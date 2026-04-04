@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吃什麼拉霸機</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #141E30, #243B55);
+            color: #ffffff;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 32px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, #00F2FE, #4FACFE);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0px 4px 20px rgba(79, 172, 254, 0.3);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px;
+            border-radius: 16px;
+        }
+
+        .tab-btn {
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 12px 20px;
+            background: transparent;
+            color: #ccc;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-grow: 1;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #FF9A9E, #FECFEF);
+            color: #333;
+            box-shadow: 0 4px 15px rgba(255, 154, 158, 0.4);
+            font-weight: 700;
+        }
+
+        #slot-machine {
+            font-size: 48px;
+            font-weight: 900;
+            color: #fff;
+            margin: 40px 0;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(0, 242, 254, 0.5);
+        }
+
+        #spin-btn {
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%);
+            color: #111;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 201, 255, 0.3);
+            margin-bottom: 20px;
+        }
+
+        #spin-btn:hover:not(:disabled) {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 201, 255, 0.5);
+        }
+
+        #spin-btn:active:not(:disabled) {
+            transform: translateY(2px) scale(0.95);
+        }
+
+        #spin-btn:disabled {
+            background: rgba(255, 255, 255, 0.1);
+            color: #666;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        #map-btn {
+            display: none;
+            margin-top: 10px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            color: #333;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(253, 160, 133, 0.4);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(253, 160, 133, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(253, 160, 133, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(253, 160, 133, 0);
+            }
+        }
+
+        #map-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        #status {
+            background: rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #ccc;
+            font-size: 14px;
+            margin-top: 15px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>酷思特必比登推薦</h1>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="changeCategory('lunch')">🍱 午餐</button>
+            <button class="tab-btn" onclick="changeCategory('dinner')">🥩 晚餐</button>
+            <button class="tab-btn" onclick="changeCategory('drinks')">🥤 飲料</button>
+            <button class="tab-btn" onclick="changeCategory('sweets')">🍰 甜食</button>
+        </div>
+
+        <div id="status">🔄 正在載入最新雲端菜單...</div>
+        <div id="slot-machine">❓ 等待抽籤</div>
+
+        <button id="spin-btn" onclick="startSpin()" disabled>開始抽籤</button>
+        <br>
+        <a id="map-btn" href="#" target="_blank">在地圖上尋找</a>
+    </div>
+
+    <script>
+        // 🚨 請將下方網址替換成您的 Google 試算表 CSV 網址！
+        const categoryUrls = {
+            lunch: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTL40EHlvYd4fJTVAbp7Hbf8aKb81T24y5zZDKp3z8Yok0GcNgEz06nduGlDE-pB8boYt2LOvdbSXfF/pub?gid=0&single=true&output=csv',
+            dinner: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTL40EHlvYd4fJTVAbp7Hbf8aKb81T24y5zZDKp3z8Yok0GcNgEz06nduGlDE-pB8boYt2LOvdbSXfF/pub?gid=1781385445&single=true&output=csv',
+            drinks: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTL40EHlvYd4fJTVAbp7Hbf8aKb81T24y5zZDKp3z8Yok0GcNgEz06nduGlDE-pB8boYt2LOvdbSXfF/pub?gid=1971131852&single=true&output=csv',
+            sweets: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTL40EHlvYd4fJTVAbp7Hbf8aKb81T24y5zZDKp3z8Yok0GcNgEz06nduGlDE-pB8boYt2LOvdbSXfF/pub?gid=1512236499&single=true&output=csv'
+        };
+
+        let currentCategory = 'lunch';
+        let restaurants = [];
+        let spinInterval;
+
+        window.onload = function () {
+            loadData(currentCategory);
+        };
+
+        async function loadData(category) {
+            const url = categoryUrls[category];
+            restaurants = [];
+
+            document.getElementById('status').innerText = '🔄 正在載入最新雲端菜單...';
+            document.getElementById('spin-btn').disabled = true;
+            document.getElementById('map-btn').style.display = 'none';
+            document.getElementById('slot-machine').innerText = '載入中...';
+
+            if (!url || url.includes('請貼上代號')) {
+                document.getElementById('status').innerText = '❌ 請先在程式碼中填寫此分類的 CSV 網址。';
+                document.getElementById('slot-machine').innerText = '無資料';
+                return;
+            }
+
+            try {
+                const response = await fetch(url);
+                const csvData = await response.text();
+
+                parseCSV(csvData);
+
+                if (restaurants.length > 0) {
+                    document.getElementById('status').innerText = `✅ 成功載入 ${restaurants.length} 個選項！`;
+                    document.getElementById('spin-btn').disabled = false;
+                    document.getElementById('slot-machine').innerText = '準備就緒！';
+                } else {
+                    document.getElementById('status').innerText = '❌ 表單內沒有資料。';
+                    document.getElementById('slot-machine').innerText = '無資料';
+                }
+            } catch (error) {
+                document.getElementById('status').innerText = '❌ 載入失敗，請確認試算表網址是否正確。';
+                console.error("讀取表單發生錯誤：", error);
+            }
+        }
+
+        function changeCategory(category) {
+            if (currentCategory === category) return;
+            currentCategory = category;
+
+            // 更新按鈕外觀
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`button[onclick="changeCategory('${category}')"]`).classList.add('active');
+
+            loadData(category);
+        }
+
+        // 將 CSV 轉換為程式看得懂的陣列格式的副程式
+        function parseCSV(data) {
+            // 用換行符號將每一列切開 (兼容 Windows 與 Mac 換行格式)
+            const rows = data.split(/\r?\n/);
+
+            // 從 i = 1 開始迴圈，這樣可以跳過第一列的「標題 (店名,地圖連結)」
+            for (let i = 1; i < rows.length; i++) {
+                if (rows[i].trim() !== '') {
+                    // 用逗號把店名和連結切開
+                    const columns = rows[i].split(',');
+                    // 確保這一行真的有兩個欄位 (店名和連結) 才加入名單
+                    if (columns.length >= 2 && columns[0].trim() !== '') {
+                        restaurants.push({
+                            name: columns[0].trim(),
+                            link: columns[1].trim()
+                        });
+                    }
+                }
+            }
+        }
+
+        // --- 以下為原本的抽籤動畫與顯示邏輯，完全不用改 ---
+        function startSpin() {
+            if (restaurants.length === 0) return; // 防呆機制
+            const slot = document.getElementById('slot-machine');
+            const mapBtn = document.getElementById('map-btn');
+            const spinBtn = document.getElementById('spin-btn');
+
+            mapBtn.style.display = 'none';
+            spinBtn.disabled = true;
+
+            let counter = 0;
+            spinInterval = setInterval(() => {
+                const randomItem = restaurants[Math.floor(Math.random() * restaurants.length)];
+                slot.innerText = randomItem.name;
+                counter++;
+                if (counter > 20) {
+                    clearInterval(spinInterval);
+                    stopSpin();
+                }
+            }, 100);
+        }
+
+        function stopSpin() {
+            const slot = document.getElementById('slot-machine');
+            const mapBtn = document.getElementById('map-btn');
+            const spinBtn = document.getElementById('spin-btn');
+
+            const finalChoice = restaurants[Math.floor(Math.random() * restaurants.length)];
+            slot.innerText = finalChoice.name;
+
+            mapBtn.href = finalChoice.link;
+            const cleanName = finalChoice.name.split(' ')[0];
+            mapBtn.innerText = `🗺️ 帶我去吃【${cleanName}】！`;
+            mapBtn.style.display = 'inline-block';
+
+            spinBtn.disabled = false;
+        }
+    </script>
+</body>
+
+</html>
